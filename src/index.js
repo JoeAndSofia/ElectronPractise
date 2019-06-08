@@ -1,12 +1,12 @@
-const {app, BrowserWindow, Menu} = require('electron')
+const {app, BrowserWindow, Menu, globalShortcut} = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win
+let win;
 
 function createWindow () {
 	// 创建浏览器窗口。
-	win = new BrowserWindow({width: 800, height: 600, frame:false});
+	win = new BrowserWindow({width: 1000, height: 600, frame:false});
 	
 	// 然后加载应用的 index.html。
 	win.loadFile('src/index.html');
@@ -15,7 +15,7 @@ function createWindow () {
 	// win.webContents.openDevTools();
 
 	//隐藏Menu
-	Menu.setApplicationMenu(null);
+	// Menu.setApplicationMenu(null);
 	
 	// 当 window 被关闭，这个事件会被触发。
 	win.on('closed', () => {
@@ -24,6 +24,14 @@ function createWindow () {
 		// 与此同时，你应该删除相应的元素。
 		win = null
 	})
+}
+
+function assignShotcut(mainWindow){
+	globalShortcut.register('Ctrl+Shift+i', function(){
+		mainWindow.webContents.openDevTools({mode:'detach'});
+		// mainWindow.webContents.toggleDevTools({mode:'detach'});
+
+	});
 }
 
 // Electron 会在初始化后并准备
