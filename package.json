@@ -13,6 +13,8 @@
     "electron": "^2.0.2"
   },
   "dependencies": {
-    "asar": "^2.0.1"
+    "asar": "^2.0.1",
+    "createjs": "^1.0.1",
+    "react": "^16.8.6"
   }
 }
