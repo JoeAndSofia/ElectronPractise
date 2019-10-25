@@ -15,8 +15,8 @@ function init() {
 	loader.addEventListener("progress",progressHandler);
 	loader.addEventListener("complete",completeHandler);
 	loader.loadManifest([
-		{src:"../img/back.jpg", id:"back"},
-		{src:"../img/sprite.png", id:"sprite"}
+		{src:"../../img/back.jpg", id:"back"},
+		{src:"../../img/sprite.png", id:"sprite"}
 	]);
 
 	createjs.Ticker.setFPS(30);
