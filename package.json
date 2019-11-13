@@ -4,8 +4,11 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
+    "react-build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "react-start:prod": "cross-env NODE_ENV=production node server",
+    "react-start": "cross-env NODE_ENV=development node server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
+    "electron-start": "cross-env NODE_ENV=production electron .",
     "setup": "node ./internals/scripts/setup.js"
   },
   "author": "",
@@ -84,8 +87,8 @@
     "whatwg-fetch": "3.0.0"
   },
   "dependencies": {
-    "asar": "^2.0.1",
     "@babel/polyfill": "7.4.3",
+    "asar": "^2.0.1",
     "chalk": "^2.4.2",
     "compression": "1.7.4",
     "connected-react-router": "6.4.0",
@@ -99,6 +102,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
+    "jquery": "^3.4.1",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
     "prop-types": "15.7.2",

@@ -10,7 +10,7 @@ let win;
 
 function createWindow() {
   // 创建浏览器窗口。
-  win = new BrowserWindow({ width: 1050, height: 300, frame: false });
+  win = new BrowserWindow({ width: 1050, height: 600, frame: true });
 
   // 然后加载应用的 index.html。
   win.loadFile('index.html');
