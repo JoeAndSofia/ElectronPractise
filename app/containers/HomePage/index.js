@@ -89,8 +89,12 @@ export function HomePage({
                 id="username"
                 type="text"
                 placeholder="mxstbr"
-                value={username}
+                value={'abcdefg' || username}
                 onChange={onChangeUsername}
+                onFocus={e => {
+                  e.target.select();
+                  document.execCommand('Copy');
+                }}
               />
             </label>
           </Form>

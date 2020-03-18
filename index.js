@@ -14,6 +14,9 @@ function createWindow() {
 
   // 然后加载应用的 index.html。
   win.loadFile('index.html');
+  // const entryHtml = `${__dirname}/build/index.html`;
+  // console.log('entryHtml: ', entryHtml);
+  // win.loadURL('http://localhost:10313');
 
   assignShotcut(win);
   // 打开开发者工具
