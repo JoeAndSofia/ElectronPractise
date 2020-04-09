@@ -18,7 +18,7 @@ function createWindow() {
   // console.log('entryHtml: ', entryHtml);
   // win.loadURL('http://localhost:10313');
 
-  assignShotcut(win);
+  assignShortcut(win);
   // 打开开发者工具
   // win.webContents.openDevTools();
 
@@ -34,10 +34,23 @@ function createWindow() {
   });
 }
 
-function assignShotcut(mainWindow) {
-  globalShortcut.register('Ctrl+Shift+i', function() {
+function assignShortcut(mainWindow) {
+  globalShortcut.register('Ctrl+Shift+i', () => {
     mainWindow.webContents.toggleDevTools({ mode: 'detach' });
     console.log('Catch Ctrl+Shift+i');
+  });
+
+  globalShortcut.unregister('Alt+Left');
+  globalShortcut.register('Alt+Left', () => {
+    console.log('mainWindow: ', mainWindow);
+    console.log('Catch Alt+Left');
+  });
+
+  globalShortcut.register('Alt+l', () => {
+    Object.keys(mainWindow).forEach(e => {
+      console.log(`----${e}: `, mainWindow[e]);
+    });
+    console.log('Catch Alt+l');
   });
   // globalShortcut.register('CommandOrControl+w', function(){
   // 	console.log("Catch CommandOrControl+w");
