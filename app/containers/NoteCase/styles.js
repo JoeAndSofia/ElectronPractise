@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { INIT_STATE } from './constants';
 
 export const NoteCaseStyle = styled.div`
   display: flex;
@@ -27,7 +28,7 @@ export const NoteCaseLowerStyle = styled.div`
     margin: 0px;
   }
   .index-tree {
-    flex: 0 0 200px;
+    flex: 0 0 ${INIT_STATE.INDEX_TREE_WIDTH}px;
     box-sizing: border-box;
   }
   .segment-border {
