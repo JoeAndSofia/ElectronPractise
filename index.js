@@ -19,6 +19,7 @@ const WINDOW_SHORT_CUTS = [
   'Alt+Tab',
   'Alt+Esc',
   'Alt+Enter',
+  'Alt+1',
 ];
 
 function assignShortcut(mainWindow) {
@@ -29,14 +30,16 @@ function assignShortcut(mainWindow) {
     console.log('Catch Ctrl+Shift+i');
   });
 
-  WINDOW_SHORT_CUTS.forEach(e => {
-    if (!globalShortcut.isRegistered(e)) {
-      console.error(`${e} has been registered by another application`);
-    }
-    globalShortcut.register(e, () => {
-      console.log(`Catch ${e}`);
-    });
-  });
+  // WINDOW_SHORT_CUTS.forEach(e => {
+  //   if (!globalShortcut.isRegistered(e)) {
+  //     console.error(`${e} - registered`);
+  //   } else {
+  //     console.error(`${e} - not registered`);
+  //   }
+  //   globalShortcut.register(e, () => {
+  //     console.log(`Catch ${e}`);
+  //   });
+  // });
 }
 
 const windowCreate = event => {
@@ -45,10 +48,12 @@ const windowCreate = event => {
     win = new BrowserWindow({ width: 1050, height: 600, frame: true });
 
     // 然后加载应用的 index.html。
-    win.loadFile('index.html');
+    // win.loadFile('index.html');
+    // win.loadFile('index_sub.html');
+
     // const entryHtml = `${__dirname}/build/index.html`;
     // console.log('entryHtml: ', entryHtml);
-    // win.loadURL('http://localhost:10313');
+    win.loadURL('http://localhost:10313/nc');
 
     assignShortcut(win);
     // 打开开发者工具

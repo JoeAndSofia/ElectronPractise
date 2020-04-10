@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <title>Hello World!</title>
   <style>
+    html body {
+      margin: 0;
+      padding: 0;
+    }
+
     html {
       overflow: hidden;
     }
@@ -19,27 +24,43 @@
       align-items: stretch;
     }
 
-    .control, .content {
-      flex: auto;
+    .control {
+      padding: 0 5px;
+      flex: 0 0 35px;
+
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
     }
 
-    .navigate {
+    .control .navigate {
       border: 1px solid gray;
       border-radius: 2px;
-      height: 25px;
+      height: 22px;
       width: 25px;
+      outline: none;
+      margin: 0 3px;
 
+      flex: 0 1 auto;
     }
 
-    #sub-inner-current-url {
+    .content {
+      flex: 1 0 600px;
+      min-height: calc(100vh - 35px);
+    }
+
+
+    .control #sub-inner-current-url {
       border: 1px solid gray;
       border-radius: 2px;
-      height: 25px;
-      width: 600px;
+      flex-basis: 600px;
+      padding: 2px 0 2px 5px;
     }
 
     #sub-inner {
-      height: 600px;
+      height: 100%;
+      min-height: calc(100vh - 30px);
     }
   </style>
 </head>
@@ -47,22 +68,21 @@
 <div class="control">
   <input
       class="navigate backward"
+      id="sub-inner-backward"
       value="<"
       type="button"
-      onclick="subBackward()"
   />
   <input
       class="navigate forward"
+      id="sub-inner-forward"
       value=">"
       type="button"
-      onclick="subForward()"
   />
   <input
       class="navigate address"
       id="sub-inner-current-url"
       placeholder="Input an Address"
-      type="input"
-      onclick="setSubInnerCurrentUrl(subInnerCurrentUrl)"
+      type="text"
   />
 </div>
 <div class="content">
@@ -77,26 +97,40 @@
 </div>
 <script>
   const subInner = document.getElementById('sub-inner');
+  const subInnerCurrentUrlIndicator = document.getElementById('sub-inner-current-url');
+  const subInnerBackward = document.getElementById('sub-inner-backward');
+  const subInnerForward = document.getElementById('sub-inner-forward');
   let subInnerCurrentUrl = '';
 
-  const setSubInnerCurrentUrl = url => {
-    subInnerCurrentUrl = url;
-    document.getElementById('sub-inner-current-url').value = subInnerCurrentUrl;
+  const displaySubInnerCurrentUrl = e => {
+    subInnerCurrentUrl = subInner.src;
+    subInnerCurrentUrlIndicator.value = subInnerCurrentUrl;
   };
 
-  console.log(subInner);
-  const subBackward = () => {
+  const resetSubInnerCurrentUrl = e => {
+    switch (e.keyCode) {
+      case 27: //Escape
+        subInnerCurrentUrlIndicator.value = subInnerCurrentUrl;
+        break;
+      default:
+        break;
+    }
+  };
+
+  const subBackward = e => {
+    console.log(subInner);
     subInner.goBack();
   };
 
-  const subForward = () => {
+  const subForward = e => {
+    console.log(subInner);
     subInner.goForward();
   };
 
-  subInner.addEventListener('dom-ready', e => {
-    setSubInnerCurrentUrl(subInner.src);
-  });
-
+  subInner.addEventListener('dom-ready', displaySubInnerCurrentUrl);
+  subInnerCurrentUrlIndicator.addEventListener('keydown', resetSubInnerCurrentUrl);
+  subInnerBackward.addEventListener('click', subBackward);
+  subInnerForward.addEventListener('click', subForward);
 
 </script>
 
