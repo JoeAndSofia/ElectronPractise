@@ -5,7 +5,7 @@
 	<title>Hello World!</title>
 </head>
 <body onload="init();">
-<a href="../../../index.html">Back</a>
+<input value="BACK" type="button" onclick="back()" />
 
 <script src="../../lib/createjs/1.0.0/createjs.js" charset="utf-8"></script>
 <canvas id="demoCanvas" width="500" height="300"></canvas>
@@ -20,6 +20,9 @@
 		circle.y = 100;
 		stage.addChild(circle);
 		stage.update();
+	}
+	const back = () => {
+	  window.history.back();
 	}
 </script>
 

@@ -12,6 +12,30 @@
       overflow: hidden;
       height: 100%;
       width: 100%;
+
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+
+    .control, .content {
+      flex: auto;
+    }
+
+    .navigate {
+      border: 1px solid gray;
+      border-radius: 2px;
+      height: 25px;
+      width: 25px;
+
+    }
+
+    #sub-inner-current-url {
+      border: 1px solid gray;
+      border-radius: 2px;
+      height: 25px;
+      width: 600px;
     }
 
     #sub-inner {
@@ -20,19 +44,45 @@
   </style>
 </head>
 <body>
-<input value="BACKWARD" type="button" onclick="subBackward()" />
-<input value="FORWARD" type="button" onclick="subForward()" />
-<webview
-    id="sub-inner"
-    src="./index_sub.html"
-    autosize="on"
-    minwidth="1350"
-    minheight="660"
->
-</webview>
-
+<div class="control">
+  <input
+      class="navigate backward"
+      value="<"
+      type="button"
+      onclick="subBackward()"
+  />
+  <input
+      class="navigate forward"
+      value=">"
+      type="button"
+      onclick="subForward()"
+  />
+  <input
+      class="navigate address"
+      id="sub-inner-current-url"
+      placeholder="Input an Address"
+      type="input"
+      onclick="setSubInnerCurrentUrl(subInnerCurrentUrl)"
+  />
+</div>
+<div class="content">
+  <webview
+      id="sub-inner"
+      src="./index_sub.html"
+      autosize="on"
+      minwidth="1350"
+      minheight="660"
+  >
+  </webview>
+</div>
 <script>
-  const subInner = document.querySelector("#sub-inner");
+  const subInner = document.getElementById('sub-inner');
+  let subInnerCurrentUrl = '';
+
+  const setSubInnerCurrentUrl = url => {
+    subInnerCurrentUrl = url;
+    document.getElementById('sub-inner-current-url').value = subInnerCurrentUrl;
+  };
 
   console.log(subInner);
   const subBackward = () => {
@@ -41,7 +91,11 @@
 
   const subForward = () => {
     subInner.goForward();
-  }
+  };
+
+  subInner.addEventListener('dom-ready', e => {
+    setSubInnerCurrentUrl(subInner.src);
+  });
 
 
 </script>
