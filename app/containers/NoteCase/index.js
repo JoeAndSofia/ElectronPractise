@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, memo } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import {
   NoteCaseStyle,
@@ -87,4 +89,10 @@ const mapDispatchToProps = dispatch => ({
   // onLoadIndexTree: () => dispatch(loadIndexTree()),
 });
 
-export default NoteCase;
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  memo
+)(NoteCase);
