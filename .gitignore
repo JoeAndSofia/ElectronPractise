@@ -10,3 +10,6 @@ node_modules
 out
 gen
 src/module/novel/WoCongFanJianLai/Chapters/*
+src/module/novel/随身带着星际争霸/*
+
+*.log
