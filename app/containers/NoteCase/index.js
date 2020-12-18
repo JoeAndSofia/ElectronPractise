@@ -9,7 +9,9 @@ import {
 } from './styles';
 
 const NoteCase = props => {
-  const indexTree = useRef(null);
+  const noteCaseBoard = useRef(null);
+
+  /* draggable segment border */
   const segmentBorder = useRef(null);
 
   const [initClientX, initOffsetLeft] = [0, 0];
@@ -17,8 +19,15 @@ const NoteCase = props => {
   const [clientX, setClientX] = useState(initClientX);
   const [offsetLeft, setOffsetLeft] = useState(initOffsetLeft);
 
+  /* index tree */
+  const indexTree = useRef(null);
+
+  const [rootTreeNodes] = useState([]);
+
   const moveSegment = e => {
     if (isDragging && indexTree) {
+      console.log('isDragging', 'setCursorEwResize');
+      noteCaseBoard.current.style.cursor = 'ew-resize';
       const nx = e.clientX;
       const nl = nx - (clientX - offsetLeft);
       indexTree.current.style.flexBasis = `${nl}px`;
@@ -27,13 +36,17 @@ const NoteCase = props => {
 
   return (
     <NoteCaseStyle
+      ref={noteCaseBoard}
       onMouseMove={e => {
         moveSegment(e);
       }}
       onMouseUp={e => {
         if (isDragging) {
           setDragging(false);
-          segmentBorder.current.style.cursor = 'default';
+          noteCaseBoard.current.style.cursor = 'default';
+        } else {
+          // console.log('isNotDragging', 'setCusorDefault');
+          // noteCaseBoard.current.style.cursor = 'default';
         }
       }}
     >
@@ -57,7 +70,7 @@ const NoteCase = props => {
           onMouseUp={e => {
             if (isDragging) {
               setDragging(false);
-              segmentBorder.current.style.cursor = 'default';
+              noteCaseBoard.current.style.cursor = 'default';
             }
           }}
         />

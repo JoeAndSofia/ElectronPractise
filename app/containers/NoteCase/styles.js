@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { INIT_STATE } from './constants';
 
+console.log('INIT_STATE: ', INIT_STATE);
+
 export const NoteCaseStyle = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -32,10 +34,11 @@ export const NoteCaseLowerStyle = styled.div`
     box-sizing: border-box;
   }
   .segment-border {
-    flex: 0 0 10px;
+    flex: 0 0 6px;
     border: 2px groove lightgray;
     box-sizing: border-box;
     outline: none;
+    cursor: ew-resize;
   }
   .content-panel {
     flex: 1 0 auto;
