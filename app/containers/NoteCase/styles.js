@@ -14,6 +14,10 @@ export const NoteCaseStyle = styled.div`
 
 export const NoteCaseUpperStyle = styled.div`
   flex: 0 0 25px;
+  
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 `;
 
 export const NoteCaseLowerStyle = styled.div`

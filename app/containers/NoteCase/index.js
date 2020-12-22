@@ -4,6 +4,14 @@ import React, { useEffect, useRef, useState, memo } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+
+import MenuGroup from './components/MenuGroup';
+import SidebarLayer from './components/SidebarLayer';
+
+import {
+  MENU_CONST,
+  MENU_CONFIG
+} from './constants';
 import {
   NoteCaseStyle,
   NoteCaseUpperStyle,
@@ -11,31 +19,48 @@ import {
 } from './styles';
 
 const NoteCase = props => {
+  
   const noteCaseBoard = useRef(null);
-
+  
   /* draggable segment border */
   const segmentBorder = useRef(null);
-
+  
   const [initClientX, initOffsetLeft] = [0, 0];
   const [isDragging, setDragging] = useState(false);
   const [clientX, setClientX] = useState(initClientX);
   const [offsetLeft, setOffsetLeft] = useState(initOffsetLeft);
-
+  
   /* index tree */
   const indexTree = useRef(null);
-
-  const [rootTreeNodes] = useState([]);
-
+  
+  const [sidebarWidth, setSidebarWidth] = useState(0);
+  const [menuShow, setMenuShow] = useState(MENU_CONST.MENU_OFF);
+  // console.log('NoteCase: ', {
+  //   sidebarWidth,
+  //   setSidebarWidth
+  // });
+  const [items, setItems] = useState([]);
+  // console.log('NoteCase: ', {
+  //   items,
+  //   setItems
+  // });
+  
   const moveSegment = e => {
-    if (isDragging && indexTree) {
+    if (noteCaseBoard && isDragging && indexTree) {
       console.log('isDragging', 'setCursorEwResize');
       noteCaseBoard.current.style.cursor = 'ew-resize';
       const nx = e.clientX;
       const nl = nx - (clientX - offsetLeft);
+      console.log({
+        nx,
+        clientX,
+        offsetLeft,
+        nl
+      });
       indexTree.current.style.flexBasis = `${nl}px`;
     }
   };
-
+  
   return (
     <NoteCaseStyle
       ref={noteCaseBoard}
@@ -52,9 +77,18 @@ const NoteCase = props => {
         }
       }}
     >
-      <NoteCaseUpperStyle />
+      <NoteCaseUpperStyle>
+        <MenuGroup
+          intlPrefix="note_case.menu"
+          config={MENU_CONFIG}
+          menuShow={menuShow}
+          setMenuShow={setMenuShow}
+        />
+      </NoteCaseUpperStyle>
       <NoteCaseLowerStyle>
-        <div className="index-tree" ref={indexTree} />
+        <div className="index-tree" ref={indexTree} >
+          <SidebarLayer width={sidebarWidth} items={items} />
+        </div>
         <div
           id="segmentBorder"
           role="button"

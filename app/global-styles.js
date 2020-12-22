@@ -28,6 +28,14 @@ const GlobalStyle = createGlobalStyle`
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
+  
+  .visible-hide {
+    visibility: hidden;
+  }
+  
+  .visible-show {
+    visibility: visible;
+  }
 `;
 
 export default GlobalStyle;
