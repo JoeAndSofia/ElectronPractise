@@ -60,6 +60,9 @@ const MenuGroup = props => {
                   setMenuShow(i);
                 }
               }}
+              onKeyDown={e => {
+                console.log('onKeyDown: ', e);
+              }}
               onMouseMove={() => {
                 if (menuShow !== MENU_CONST.MENU_OFF) {
                   setMenuShow(i);
@@ -69,7 +72,7 @@ const MenuGroup = props => {
               <FormattedMessage
                 id={intlId}
                 description={desc}
-                defaultMessage={`No content set for message id: ${name}`}
+                defaultMessage={`No content set for message id: ${intlId}`}
               />
               <MenuItemsStyle
                 className={`menu-items ${menuShow === i ? 'visible-show' : 'visible-hide'}`}
@@ -78,7 +81,9 @@ const MenuGroup = props => {
                   items.map(e => {
                     const itemIntlId = `${intlId}.${e.name}`;
                     return <MenuItem
+                      icon={e.icon}
                       name={itemIntlId}
+                      desc={e.desc}
                       key={itemIntlId}
                       onClick={() => {
                         e.onClick();

@@ -33,5 +33,7 @@
   "note_case.menu.file": "File",
   "note_case.menu.file.open": "Open",
   "note_case.menu.edit": "Edit",
-  "note_case.menu.edit.copy": "Copy"
+  "note_case.menu.edit.copy": "Copy",
+  "note_case.menu.view": "View",
+  "note_case.menu.view.toggle_sidebar": "Toggle Sidebar"
 }

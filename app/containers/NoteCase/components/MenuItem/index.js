@@ -3,21 +3,24 @@ import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
 
 import {
-  MenuItemStyle
+  MenuItemStyle,
+  MenuItemIconStyle
 } from './styles';
 
 const MenuItem = props => {
   const {
+    icon,
     name,
     desc = '',
     onClick = () => {},
   } = props;
   
-  // console.log('MenuItem: ', {
-  //   name,
-  //   desc,
-  //   onClick
-  // });
+  console.log('MenuItem: ', {
+    icon,
+    name,
+    desc,
+    onClick
+  });
   
   return (
     <MenuItemStyle
@@ -28,6 +31,9 @@ const MenuItem = props => {
         console.log('menu.item-click: ', e.target);
       }}
     >
+      <MenuItemIconStyle
+        icon={icon}
+      />
       <FormattedMessage
         id={name}
         description={desc}

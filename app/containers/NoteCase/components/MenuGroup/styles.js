@@ -22,7 +22,7 @@ export const MenuTitleStyle = styled.div`
   }
   
   display: flex;
-  span {
+  > span {
     flex: 0 0 ${INIT_STATE.MENU_BAR_WIDTH}px;
     user-select: none;
   }
@@ -58,8 +58,6 @@ export const MenuClickLayerStyle = styled.div`
   
   width: 100vw;
   height: 100vh;
-  
-  background-color: #f5d6f1;
   
   opacity: 50%;
 `;

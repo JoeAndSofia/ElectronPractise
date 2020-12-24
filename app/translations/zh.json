@@ -1,5 +1,9 @@
 {
   
   "note_case.menu.file": "文件",
-  "note_case.menu.file.open": "打开"
+  "note_case.menu.file.open": "打开",
+  "note_case.menu.edit": "编辑",
+  "note_case.menu.edit.copy": "复制",
+  "note_case.menu.view": "查看",
+  "note_case.menu.view.toggle_sidebar": "切换侧边栏"
 }
