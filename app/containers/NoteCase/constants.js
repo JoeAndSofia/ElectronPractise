@@ -17,6 +17,55 @@ const MENU_CONFIG = [
     onClick: () => {
       console.log('menu.file clicked')
     },
+    shortcut: {
+      assist: 'Alt',
+      key_p: 'F',
+      key_s: ''
+    },
+    
+    items: [
+      {
+        name: 'open',
+        onClick: () => {
+          console.log('menu.file.open clicked');
+        },
+        shortcut: {
+          assist: 'Ctrl',
+          key_p: 'O',
+          key_s: ''
+        }
+      }
+    ]
+  },
+  {
+    name: 'edit',
+    onClick: () => {
+      console.log('menu.edit clicked')
+    },
+    shortcut: {
+      assist: 'Alt',
+      key_p: 'E',
+      key_s: ''
+    },
+    items: [
+      {
+        name: 'copy',
+        onClick: () => {
+          console.log('menu.edit.copy clicked');
+        },
+        shortcut: {
+          assist: 'Ctrl',
+          key_p: 'C',
+          key_s: ''
+        }
+      }
+    ]
+  },
+  {
+    name: 'file',
+    onClick: () => {
+      console.log('menu.file clicked')
+    },
     shortcut: 'Alt + F',
     items: [
       {
@@ -24,7 +73,27 @@ const MENU_CONFIG = [
         onClick: () => {
           console.log('menu.file.open clicked');
         },
-        shortcut: 'Ctrl + O'
+        shortcut: {
+          assist: 'Ctrl',
+          key_p: 'O',
+          key_s: ''
+        }
+      }
+    ]
+  },
+  {
+    name: 'edit',
+    onClick: () => {
+      console.log('menu.edit clicked')
+    },
+    shortcut: 'Alt + E',
+    items: [
+      {
+        name: 'copy',
+        onClick: () => {
+          console.log('menu.edit.copy clicked');
+        },
+        shortcut: 'Ctrl + C'
       }
     ]
   }

@@ -61,7 +61,9 @@ const MenuGroup = props => {
                 }
               }}
               onMouseMove={() => {
-              
+                if (menuShow !== MENU_CONST.MENU_OFF) {
+                  setMenuShow(i);
+                }
               }}
             >
               <FormattedMessage
@@ -69,25 +71,25 @@ const MenuGroup = props => {
                 description={desc}
                 defaultMessage={`No content set for message id: ${name}`}
               />
+              <MenuItemsStyle
+                className={`menu-items ${menuShow === i ? 'visible-show' : 'visible-hide'}`}
+              >
+                {
+                  items.map(e => {
+                    const itemIntlId = `${intlId}.${e.name}`;
+                    return <MenuItem
+                      name={itemIntlId}
+                      key={itemIntlId}
+                      onClick={() => {
+                        e.onClick();
+                        setMenuShow(MENU_CONST.MENU_OFF);
+                      }}
+                    />
+                  })
+                }
+              </MenuItemsStyle>
             </MenuTitleStyle>
             
-            <MenuItemsStyle
-              className={`menu-items ${menuShow === i ? 'visible-show' : 'visible-hide'}`}
-            >
-              {
-                items.map(e => {
-                  const itemIntlId = `${intlId}.${e.name}`;
-                  return <MenuItem
-                    name={itemIntlId}
-                    key={itemIntlId}
-                    onClick={() => {
-                      e.onClick();
-                      setMenuShow(false);
-                    }}
-                  />
-                })
-              }
-            </MenuItemsStyle>
           </Fragment>
         })
       }

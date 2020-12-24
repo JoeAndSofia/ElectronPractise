@@ -12,6 +12,7 @@ export const MenuGroupStyle = styled.div`
 `;
 
 export const MenuTitleStyle = styled.div`
+  position: relative;
   text-align: center;
   
   flex: 0 0 ${props => props.width}px;
@@ -58,7 +59,7 @@ export const MenuClickLayerStyle = styled.div`
   width: 100vw;
   height: 100vh;
   
-  background-color: #b2d2e4;
+  background-color: #f5d6f1;
   
   opacity: 50%;
 `;
