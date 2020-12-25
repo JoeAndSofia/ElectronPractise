@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { INIT_STATE } from '../../constants';
+import { INIT_STATE, MENU_CONST } from '../../constants';
 
 export const MenuItemStyle = styled.button`
   position: relative;
-  flex: 0 0 ${INIT_STATE.MENU_BAR_HEIGHT}px;
+  flex: 0 0 ${MENU_CONST.MENU_BAR.HEIGHT}px;
   padding: 0;
   
   
@@ -20,16 +20,21 @@ export const MenuItemStyle = styled.button`
     user-select: none;
   }
   
-  border-style: none solid none solid;
+  border-style: ${props => props.borderStyles ? props.borderStyles.join(' ') : 'none solid none solid'};
   border-width: 0.5px;
   outline: 0;
 `;
 
 export const MenuItemIconStyle = styled.span`
-  flex: 0 0 ${INIT_STATE.MENU_BAR_HEIGHT}px;
-  height: ${INIT_STATE.MENU_BAR_HEIGHT}px;
+  flex: 0 0 ${MENU_CONST.MENU_BAR.HEIGHT}px;
+  height: ${MENU_CONST.MENU_BAR.HEIGHT}px;
   background-color: transparent;
   background-image: url(${props => props.icon});
   background-size: 60% 60%;
   background-position: 50% 50%;
+`;
+
+export const MenuItemShortcutTextStyle = styled.span`
+  flex: 0 0 auto;
+  height: ${MENU_CONST.MENU_BAR.HEIGHT}px;
 `;

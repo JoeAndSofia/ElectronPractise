@@ -3,8 +3,13 @@ import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
 
 import {
+  MENU_CONST
+} from '../../constants';
+
+import {
   MenuItemStyle,
-  MenuItemIconStyle
+  MenuItemIconStyle,
+  MenuItemShortcutTextStyle
 } from './styles';
 
 const MenuItem = props => {
@@ -13,13 +18,19 @@ const MenuItem = props => {
     name,
     desc = '',
     onClick = () => {},
+    shortcut = [],
+    first,
+    last
   } = props;
   
   console.log('MenuItem: ', {
     icon,
     name,
     desc,
-    onClick
+    onClick,
+    shortcut,
+    first,
+    last
   });
   
   return (
@@ -30,6 +41,12 @@ const MenuItem = props => {
         onClick();
         console.log('menu.item-click: ', e.target);
       }}
+      borderStyles={[
+        first ? MENU_CONST.MENU_ITEM.BORDER_STYLE.TOP : MENU_CONST.MENU_ITEM.BORDER_STYLE.NONE,
+        MENU_CONST.MENU_ITEM.BORDER_STYLE.SIDE,
+        last ? MENU_CONST.MENU_ITEM.BORDER_STYLE.BOTTOM : MENU_CONST.MENU_ITEM.BORDER_STYLE.NONE,
+        MENU_CONST.MENU_ITEM.BORDER_STYLE.SIDE
+      ]}
     >
       <MenuItemIconStyle
         icon={icon}
@@ -39,6 +56,11 @@ const MenuItem = props => {
         description={desc}
         defaultMessage={`No content set for message id: ${name}`}
       />
+      <MenuItemShortcutTextStyle>
+        {
+          // todo
+        }
+      </MenuItemShortcutTextStyle>
     </MenuItemStyle>
   );
 };

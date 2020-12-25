@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { INIT_STATE } from '../../constants';
+import { INIT_STATE, MENU_CONST } from '../../constants';
 
 export const MenuGroupStyle = styled.div`
   position: relative;
@@ -23,7 +23,7 @@ export const MenuTitleStyle = styled.div`
   
   display: flex;
   > span {
-    flex: 0 0 ${INIT_STATE.MENU_BAR_WIDTH}px;
+    flex: 0 0 ${MENU_CONST.MENU_BAR.WIDTH}px;
     user-select: none;
   }
   
@@ -36,10 +36,10 @@ export const MenuItemsStyle = styled.div`
   user-select: none;
   
   position: absolute;
-  width: ${INIT_STATE.MENU_ITEM_WIDTH}px;
+  width: ${MENU_CONST.MENU_ITEM.WIDTH}px;
   
   left: 0;
-  top: ${INIT_STATE.MENU_BAR_HEIGHT}px;
+  top: ${MENU_CONST.MENU_BAR.HEIGHT}px;
   z-index: 2;
   
   display: flex;

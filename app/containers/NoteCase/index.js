@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import React, { useEffect, useRef, useState, memo } from 'react';
+import React, { useCallback, useEffect, useRef, useState, memo } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -20,6 +20,8 @@ import {
 
 const NoteCase = props => {
   
+  console.log('NoteCase: ', props);
+  
   const noteCaseBoard = useRef(null);
   
   /* draggable segment border */
@@ -35,15 +37,7 @@ const NoteCase = props => {
   
   const [sidebarWidth, setSidebarWidth] = useState(0);
   const [menuShow, setMenuShow] = useState(MENU_CONST.MENU_OFF);
-  // console.log('NoteCase: ', {
-  //   sidebarWidth,
-  //   setSidebarWidth
-  // });
   const [items, setItems] = useState([]);
-  // console.log('NoteCase: ', {
-  //   items,
-  //   setItems
-  // });
   
   const moveSegment = e => {
     if (noteCaseBoard && isDragging && indexTree) {

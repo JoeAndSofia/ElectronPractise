@@ -3,16 +3,26 @@ import {
 } from '../../images'
 
 const INIT_STATE = {
-  INDEX_TREE_WIDTH: 200,
-  
-  MENU_BAR_WIDTH: 60,
-  MENU_BAR_HEIGHT: 25,
-  
-  MENU_ITEM_WIDTH: 320
+  INDEX_TREE_WIDTH: 200
 };
 
 const MENU_CONST = {
-  MENU_OFF: -1
+  MENU_OFF: -1,
+  
+  MENU_BAR: {
+    WIDTH: 60,
+    HEIGHT: 25
+  },
+  
+  MENU_ITEM: {
+    WIDTH: 320,
+    BORDER_STYLE: {
+      SIDE: 'solid',
+      TOP: 'solid',
+      BOTTOM: 'solid',
+      NONE: 'none'
+    }
+  },
 };
 
 console.log('constants: ', {
@@ -46,7 +56,9 @@ const MENU_CONFIG = [
             key_p: 'O',
             key_s: ''
           }
-        ]
+        ],
+        first: true,
+        last: true
       }
     ]
   },
@@ -74,7 +86,9 @@ const MENU_CONFIG = [
             key_p: 'C',
             key_s: ''
           }
-        ]
+        ],
+        first: true,
+        last: true
       }
     ]
   },
@@ -100,7 +114,9 @@ const MENU_CONFIG = [
             assist: 'Ctrl + Alt',
             key_p: 'S',
           }
-        ]
+        ],
+        first: true,
+        last: true
       }
     ]
   }

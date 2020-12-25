@@ -17,6 +17,9 @@ import {
 import MenuItem from '../MenuItem';
 
 const MenuGroup = props => {
+  
+  console.log('MenuGroup: ', props);
+  
   const {
     intlPrefix,
     config = [],
@@ -42,7 +45,7 @@ const MenuGroup = props => {
           const {
             name,
             onClick = () => {},
-            shortcut = '',
+            shortcut = [],
             desc = '',
             items = []
           } = c;
@@ -50,7 +53,7 @@ const MenuGroup = props => {
           const intlId = `${intlPrefix}.${name}`;
           return <Fragment key={intlId}>
             <MenuTitleStyle
-              width={INIT_STATE.MENU_BAR_WIDTH}
+              width={MENU_CONST.MENU_BAR.WIDTH}
               className="menu-title"
               tabIndex="0"
               onClick={() => {
@@ -64,7 +67,7 @@ const MenuGroup = props => {
                 console.log('onKeyDown: ', e);
               }}
               onMouseMove={() => {
-                if (menuShow !== MENU_CONST.MENU_OFF) {
+                if (menuShow !== MENU_CONST.MENU_OFF && menuShow !== i) {
                   setMenuShow(i);
                 }
               }}
@@ -74,25 +77,30 @@ const MenuGroup = props => {
                 description={desc}
                 defaultMessage={`No content set for message id: ${intlId}`}
               />
-              <MenuItemsStyle
-                className={`menu-items ${menuShow === i ? 'visible-show' : 'visible-hide'}`}
-              >
-                {
-                  items.map(e => {
-                    const itemIntlId = `${intlId}.${e.name}`;
-                    return <MenuItem
-                      icon={e.icon}
-                      name={itemIntlId}
-                      desc={e.desc}
-                      key={itemIntlId}
-                      onClick={() => {
-                        e.onClick();
-                        setMenuShow(MENU_CONST.MENU_OFF);
-                      }}
-                    />
-                  })
-                }
-              </MenuItemsStyle>
+              {
+                menuShow === i && (
+                  <MenuItemsStyle>
+                    {
+                      items.map(f => {
+                        const itemIntlId = `${intlId}.${f.name}`;
+                        return <MenuItem
+                          icon={f.icon}
+                          name={itemIntlId}
+                          desc={f.desc}
+                          key={itemIntlId}
+                          onClick={() => {
+                            f.onClick();
+                            setMenuShow(MENU_CONST.MENU_OFF);
+                          }}
+                          shortcut={f.shortcut}
+                          first={f.first}
+                          last={f.last}
+                        />
+                      })
+                    }
+                  </MenuItemsStyle>
+                )
+              }
             </MenuTitleStyle>
             
           </Fragment>
