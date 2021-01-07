@@ -2,6 +2,8 @@
 
 console.log('launch: ', __filename);
 const { app, BrowserWindow, Menu, globalShortcut } = require('electron');
+
+const { APP_ROUTES } = require('./app/constants/routes');
 const { reactApp } = require('./server/index');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -53,7 +55,7 @@ const windowCreate = event => {
 
     // const entryHtml = `${__dirname}/build/index.html`;
     // console.log('entryHtml: ', entryHtml);
-    win.loadURL('http://localhost:10313/nc');
+    win.loadURL(`http://localhost:10313${APP_ROUTES.NOTE_CASE}`);
 
     assignShortcut(win);
     // 打开开发者工具

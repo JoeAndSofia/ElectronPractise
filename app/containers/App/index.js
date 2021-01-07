@@ -11,6 +11,8 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
+import { ROOT_ROUTES, APP_ROUTES } from 'constants/routes';
+
 import HomePage from 'containers/HomePage/Loadable';
 import NoteCase from 'containers/NoteCase/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
@@ -42,9 +44,11 @@ export default function App() {
       </Helmet>
       {/*<Header />*/}
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/nc" component={NoteCase} />
-        <Route path="/features" component={FeaturePage} />
+        <Route exact path={ROOT_ROUTES.HOMEPAGE} component={HomePage} />
+        <Route path={ROOT_ROUTES.FEATURES} component={FeaturePage} />
+        
+        <Route exact path={APP_ROUTES.NOTE_CASE} component={NoteCase} />
+        
         <Route path="" component={NotFoundPage} />
       </Switch>
       {/*<Footer />*/}

@@ -14,6 +14,10 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
+
+import {
+  APP_ROUTES
+} from 'constants/routes'
 import {
   makeSelectRepos,
   makeSelectLoading,
@@ -42,6 +46,7 @@ export function HomePage({
   repos,
   onSubmitForm,
   onChangeUsername,
+  history,
 }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
@@ -67,6 +72,12 @@ export function HomePage({
         />
       </Helmet>
       <div>
+        
+        <button
+          onClick={() => {history.push(APP_ROUTES.NOTE_CASE)}}
+        >
+          NoteCase
+        </button>
         <CenteredSection>
           <H2>
             <FormattedMessage {...messages.startProjectHeader} />
@@ -112,6 +123,9 @@ HomePage.propTypes = {
   onSubmitForm: PropTypes.func,
   username: PropTypes.string,
   onChangeUsername: PropTypes.func,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
