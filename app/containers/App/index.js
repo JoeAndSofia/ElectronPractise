@@ -37,15 +37,15 @@ export default function App() {
   return (
     <AppWrapper>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="%s - React Based"
+        defaultTitle="React Based"
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       {/*<Header />*/}
       <Switch>
         <Route exact path={ROOT_ROUTES.HOMEPAGE} component={HomePage} />
-        <Route path={ROOT_ROUTES.FEATURES} component={FeaturePage} />
+        <Route exact={false} path={ROOT_ROUTES.FEATURES} component={FeaturePage} />
         
         <Route exact path={APP_ROUTES.NOTE_CASE} component={NoteCase} />
         

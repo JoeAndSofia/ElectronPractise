@@ -16,6 +16,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
 import {
+  ROOT_ROUTES,
   APP_ROUTES
 } from 'constants/routes'
 import {
@@ -78,6 +79,11 @@ export function HomePage({
         >
           NoteCase
         </button>
+        <button
+          onClick={() => {history.push(ROOT_ROUTES.FEATURES)}}
+        >
+          Features
+        </button>
         <CenteredSection>
           <H2>
             <FormattedMessage {...messages.startProjectHeader} />
@@ -100,7 +106,7 @@ export function HomePage({
                 id="username"
                 type="text"
                 placeholder="mxstbr"
-                value={'abcdefg' || username}
+                value={username}
                 onChange={onChangeUsername}
                 onFocus={e => {
                   e.target.select();
@@ -137,7 +143,13 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
+    onChangeUsername: evt => {
+      console.log({
+        target: evt.target
+      });
+      console.log(evt.target.value, evt.target.value.length);
+      dispatch(changeUsername(evt.target.value))
+    },
     onSubmitForm: evt => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
