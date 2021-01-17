@@ -19,26 +19,26 @@ import {
 } from './styles';
 
 const NoteCase = props => {
-  
+
   console.log('NoteCase: ', props);
-  
+
   const noteCaseBoard = useRef(null);
-  
+
   /* draggable segment border */
   const segmentBorder = useRef(null);
-  
+
   const [initClientX, initOffsetLeft] = [0, 0];
   const [isDragging, setDragging] = useState(false);
   const [clientX, setClientX] = useState(initClientX);
   const [offsetLeft, setOffsetLeft] = useState(initOffsetLeft);
-  
+
   /* index tree */
   const indexTree = useRef(null);
-  
+
   const [sidebarWidth, setSidebarWidth] = useState(0);
   const [menuShow, setMenuShow] = useState(MENU_CONST.MENU_OFF);
   const [items, setItems] = useState([]);
-  
+
   const moveSegment = e => {
     if (noteCaseBoard && isDragging && indexTree) {
       console.log('isDragging', 'setCursorEwResize');
@@ -54,7 +54,7 @@ const NoteCase = props => {
       indexTree.current.style.flexBasis = `${nl}px`;
     }
   };
-  
+
   return (
     <NoteCaseStyle
       ref={noteCaseBoard}
