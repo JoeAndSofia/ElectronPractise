@@ -82,9 +82,11 @@ module.exports = options => ({
                 interlaced: false,
               },
               optipng: {
+                enabled: false,
                 optimizationLevel: 7,
               },
               pngquant: {
+                enabled: false,
                 quality: '65-90',
                 speed: 4,
               },
